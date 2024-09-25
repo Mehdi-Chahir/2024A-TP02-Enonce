@@ -25,15 +25,11 @@ for row in c:
 csvfile.close()
 
 
-print(f' \n Bibliotheque initiale : {bibliotheque} \n')
-print(bibliotheque["H007"])
-
-
-
-
-#dictionnaire="Bibliotheque"
-#bibliotheque=
 #print(f' \n Bibliotheque initiale : {bibliotheque} \n')
+#print(bibliotheque["H007"])
+
+
+
 
 
 
@@ -48,6 +44,27 @@ print(bibliotheque["H007"])
 ########################################################################################################## 
 
 # TODO : Écrire votre code ici
+import csv
+
+bibliotheque2={}
+csvfile = open('nouvelle_collection.csv', newline='')
+c2 = csv.DictReader(csvfile)
+
+for row2 in c2:
+    
+    cote_rangement=row2['cote_rangement']
+    bibliotheque2[cote_rangement]={ 
+        "Le livre" + row2['cote_rangement']}# + "----"+ "row2['titre'] + "par" + row2['auteur'] + "----" +" a été ajouté avec succès"}
+#bibliotheque[cote_rangement]={'Titre':row['titre'],'Auteur':row['auteur'],'Date de Publication':row['date_publication']}
+
+     #"Le livre {cote_rangement} ---- {titre} par {auteur} ---- a été ajouté avec succès"
+csvfile.close()
+
+bibliotheque.update(bibliotheque2)
+print(bibliotheque)
+#print(bibliotheque2)
+
+
 
 
 
