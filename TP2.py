@@ -9,23 +9,19 @@ Noms et matricules : Nom1 (Matricule1), Nom2 (Matricule2)
 ########################################################################################################## 
 # PARTIE 1 : Création du système de gestion et ajout de la collection actuelle
 ########################################################################################################## 
+bibliotheque = {}
 
 import csv
-
 csvfile = open('collection_bibliotheque.csv', newline='')
-
 c = csv.DictReader(csvfile)
-
-
 for row in c:
-    print(row['titre'])
-
+    cote_rangement = row["cote_rangement"]
+    bibliotheque[cote_rangement]= row[titre], row[auteur]
 csvfile.close()
 
 
 
-
-
+print(f' \n Bibliotheque initiale : {bibliotheque} \n')
 
 ########################################################################################################## 
 # PARTIE 2 : Ajout d'une nouvelle collection à la bibliothèque
