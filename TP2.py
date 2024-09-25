@@ -12,20 +12,29 @@ Noms et matricules : Nom1 (Matricule1), Nom2 (Matricule2)
 
 # TODO : Écrire votre code ici
 import csv
+bibliotheque={}
 
-
+# j entre dans le fichier
 csvfile = open('collection_bibliotheque.csv', newline='')
-
-# make a new variable - c - for Python's DictReader object -
 c = csv.DictReader(csvfile)
-
 for row in c:
-    print(row['titre']+":" +row['auteur']+","+row['date_publication']+","+row['cote_rangement'])
+    cote_rangement=row['cote_rangement']
+    bibliotheque[cote_rangement]={'Titre':row['titre'],'Auteur':row['auteur'],'Date de Publication':row['date_publication']}
+   
 
-
-# save and close the file
 csvfile.close()
+
+
+print(f' \n Bibliotheque initiale : {bibliotheque} \n')
+print(bibliotheque["H007"])
+
+
+
+
+#dictionnaire="Bibliotheque"
+#bibliotheque=
 #print(f' \n Bibliotheque initiale : {bibliotheque} \n')
+
 
 
 
