@@ -10,7 +10,17 @@ Noms et matricules : Nom1 (Matricule1), Nom2 (Matricule2)
 # PARTIE 1 : Création du système de gestion et ajout de la collection actuelle
 ########################################################################################################## 
 
-# TODO : Écrire votre code ici
+import csv
+
+csvfile = open('collection_bibliotheque.csv', newline='')
+
+c = csv.DictReader(csvfile)
+
+
+for row in c:
+    print(row['titre'])
+
+csvfile.close()
 
 
 
