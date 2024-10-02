@@ -71,35 +71,28 @@ csvfile.close()
 # PARTIE 5 : Livres en retard 
 ########################################################################################################## 
 
-
+from datetime import datetime
 from datetime import timedelta
 
-# Définition des délais de retour et de frais de retard
 delai_retour = timedelta(days=30)
-frais_jour = 2
+frais_par_retard = 2
 frais_max = 100
 livres_perdus = []
 date_aujourd_hui = datetime.now()
 
-# Calcul des frais de retard et des livres perdus
 for cote, details in bibliotheque.items():
     if details.get('emprunts') == 'emprunté' and details.get('date_emprunt'):
         date_emprunt = datetime.strptime(details['date_emprunt'], '%Y-%m-%d')
         jours_retard = (date_aujourd_hui - date_emprunt).days - delai_retour.days
         
         if jours_retard > 0:
-            frais_retard = min(jours_retard * frais_jour, frais_max)
-            bibliotheque[cote]['frais_retard'] = frais_retard
-            print(f"Le livre {details['Titre']} est en retard avec {frais_retard}$ de frais.")
-            
-            # Si le livre est en retard de plus d'un an, il est considéré comme perdu
+            frais_retard = min(jours_retard * frais_par_retard, frais_max)
+            bibliotheque[cote]['frais_retard'] = frais_retard            
             if jours_retard > 365:
                 livres_perdus.append(cote)
-                bibliotheque[cote]['emprunts'] = 'perdu'
+                bibliotheque[cote]['emprunts'] = 'livre est perdu'
 
-# Affichage des livres perdus et de la bibliothèque avec les retards et frais
-print(f'\n Livres perdus : {livres_perdus} \n')
-print(f'\n Bibliotheque avec ajout des retards et frais : {bibliotheque} \n')
+print(f' \n Bibliotheque avec ajout des retards et frais : {bibliotheque} \n')
 
 
 
