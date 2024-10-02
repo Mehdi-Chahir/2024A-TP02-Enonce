@@ -1,9 +1,9 @@
 """
 TP2 : Système de gestion de livres pour une bibliothèque
 
-Groupe de laboratoire : XX
-Numéro d'équipe :  YY
-Noms et matricules : Nom1 (Matricule1), Nom2 (Matricule2)
+Groupe de laboratoire : 1
+Numéro d'équipe :  10
+Noms et matricules : Nour Hoballah (2403966 ), Mehdi Chahir (2363286)
 
 
 ########################################################################################################## 
@@ -80,6 +80,21 @@ print(f' \n Bibliotheque initiale : {bibliotheque} \n')
 
 # TODO : Écrire votre code ici
 
+csvfile = open('emprunts.csv', newline='')
+x = csv.DictReader(csvfile)
+for row in x:
+        cote_rangement = row['cote_rangement']
+        if cote_rangement in bibliotheque:
+            bibliotheque[cote_rangement]['emprunts'] = 'emprunté'
+            bibliotheque[cote_rangement]['date_emprunt'] = row['date_emprunt']
+
+for cote, details in bibliotheque.items():
+    if 'emprunts' not in details:
+        bibliotheque[cote]['emprunts'] = 'disponible'
+        bibliotheque[cote]['date_emprunt'] = None
+
+print(f'\n Bibliotheque avec ajout des emprunts : {bibliotheque} \n')
+csvfile.close()
 
 
 
