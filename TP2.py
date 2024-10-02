@@ -4,11 +4,12 @@ TP2 : Système de gestion de livres pour une bibliothèque
 Groupe de laboratoire : XX
 Numéro d'équipe :  YY
 Noms et matricules : Nom1 (Matricule1), Nom2 (Matricule2)
-"""
+
 
 ########################################################################################################## 
 # PARTIE 1 : Création du système de gestion et ajout de la collection actuelle
 ########################################################################################################## 
+"""
 
 # TODO : Écrire votre code ici
 import csv
@@ -27,17 +28,6 @@ csvfile.close()
 
 #print(f' \n Bibliotheque initiale : {bibliotheque} \n')
 #print(bibliotheque["H007"])
-
-
-
-
-
-
-
-
-
-
-
 
 ########################################################################################################## 
 # PARTIE 2 : Ajout d'une nouvelle collection à la bibliothèque
@@ -62,6 +52,21 @@ csvfile.close()
 ########################################################################################################## 
 
 # TODO : Écrire votre code ici
+
+#pour c dans blablabal quand cote starts with S replace with WS
+#"WS". Par conséquent, pour tous les livres de l'auteur William Shakespeare, la cote de rangement, qui débute actuellement par "S" suivi de 3 chiffres, devra être modifiée dans le système de gestion par "WS", suivi des mêmes trois chiffres qu'auparavant. (Par exemple, le livre ayant la cote "S028" devra être changé à "WS028"). 
+
+csvfile = open('nouvelle_collection.csv', newline='')
+x = csv.DictReader(csvfile)
+
+
+for cote_rangement, auteur in bibliotheque.items():
+    if auteur['Auteur'] == "William Shakespeare" and cote_rangement.startswith('S') :
+        nouveauCode="WS" + cote_rangement[1:]
+        bibliotheque['nouveauCode']=bibliotheque.pop['cote_rangement'] # j'updatae la nouvelle version avec pop [nouveauCode] est ma nouvelle cles
+
+print(f' \n Bibliotheque initiale : {bibliotheque} \n')
+
 
 
 
