@@ -39,12 +39,12 @@ csvfile.close()
 # PARTIE 3 : Modification de la cote de rangement d'une sélection de livres
 ########################################################################################################## 
 
+for cote_rangement, details in list(bibliotheque.items()):
+    if details['Auteur'] == 'William Shakespeare' and cote_rangement.startswith('S'):
+        nouvelle_cote = 'WS' + cote_rangement[1:]
+        bibliotheque[nouvelle_cote] = bibliotheque.pop(cote_rangement)
 
-
-
-
-
-
+print(f'\n Bibliotheque avec modifications de cote : {bibliotheque} \n')
 
 
 ########################################################################################################## 
@@ -58,8 +58,6 @@ for row in x:
         if cote_rangement in bibliotheque:
             bibliotheque[cote_rangement]['emprunts'] = 'emprunté'
             bibliotheque[cote_rangement]['date_emprunt'] = row['date_emprunt']
-        else:
-            print(f"Le livre avec la cote {cote_rangement} n'existe pas dans la bibliothèque.")
 
 for cote, details in bibliotheque.items():
     if 'emprunts' not in details:
