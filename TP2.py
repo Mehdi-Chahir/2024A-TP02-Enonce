@@ -30,12 +30,10 @@ for row in x:
     if cote_rangement in bibliotheque:
         if row['titre'] != bibliotheque[cote_rangement]["Titre"]:
             bibliotheque[cote_rangement]={'Titre':row['titre'],'Auteur':row['auteur'],'Date de Publication':row['date_publication']}
-            print(f"Le livre {bibliotheque[cote_rangement]} ---- {bibliotheque[cote_rangement]['Titre']} par {bibliotheque[cote_rangement]['Auteur']} ---- a été ajouté avec succès")
+            print(f"Le livre {cote_rangement} ---- {bibliotheque[cote_rangement]['Titre']} par {bibliotheque[cote_rangement]['Auteur']} ---- a été ajouté avec succès")
         else:
-            print(f"Le livre {bibliotheque[cote_rangement]} ---- {bibliotheque[cote_rangement]['Titre']} par {bibliotheque[cote_rangement]['Auteur']} ---- est déjà présent dans la bibliothèque")
+            print(f"Le livre {cote_rangement} ---- {bibliotheque[cote_rangement]['Titre']} par {bibliotheque[cote_rangement]['Auteur']} ---- est déjà présent dans la bibliothèque")
 csvfile.close()
-
-
 
 ########################################################################################################## 
 # PARTIE 3 : Modification de la cote de rangement d'une sélection de livres
