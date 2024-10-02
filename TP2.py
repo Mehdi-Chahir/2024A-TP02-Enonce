@@ -79,6 +79,23 @@ print(f' \n Bibliotheque initiale : {bibliotheque} \n')
 ########################################################################################################## 
 
 # TODO : Écrire votre code ici
+csvfile = open('emprunts.csv', newline='')
+x = csv.DictReader(csvfile)
+for row in x:
+        cote_rangement = row['cote_rangement']
+        if cote_rangement in bibliotheque:
+            bibliotheque[cote_rangement]['emprunts'] = 'emprunté'
+            bibliotheque[cote_rangement]['date_emprunt'] = row['date_emprunt']
+        else:
+            print(f"Le livre avec la cote {cote_rangement} n'existe pas dans la bibliothèque.")
+
+for cote, details in bibliotheque.items():
+    if 'emprunts' not in details:
+        bibliotheque[cote]['emprunts'] = 'disponible'
+        bibliotheque[cote]['date_emprunt'] = None
+
+print(f'\n Bibliotheque avec ajout des emprunts : {bibliotheque} \n')
+csvfile.close()
 
 
 
