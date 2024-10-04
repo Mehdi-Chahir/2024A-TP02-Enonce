@@ -26,7 +26,7 @@ for row in c:
 csvfile.close()
 
 
-#print(f' \n Bibliotheque initiale : {bibliotheque} \n')
+print(f' \n Bibliotheque initiale : {bibliotheque} \n')
 #print(bibliotheque["H007"])
 
 ########################################################################################################## 
@@ -65,7 +65,7 @@ for cote_rangement, auteur in a.items():
         nouveauCode="WS" + cote_rangement[1:]
         bibliotheque[nouveauCode]=bibliotheque.pop(cote_rangement) # j'updatae la nouvelle version avec pop [nouveauCode] est ma nouvelle cles
 
-#print(f' \n Bibliotheque initiale : {bibliotheque} \n')
+print(f' \n Bibliotheque initiale : {bibliotheque} \n')
 
 
 
@@ -116,25 +116,26 @@ frais_max = 100
 livres_perdus = []
 date_aujourd_hui = datetime.now()
 
-
-a = bibliotheque.copy()
-
-for cote_rangement, date_emprunt in a.items():
-    if date_emprunt['emprunts']=='emprunté':
+for cote, details in bibliotheque.items():
+    if details.get('emprunts') == 'emprunté' and details.get('date_emprunt'):
         date_emprunt = datetime.strptime(details['date_emprunt'], '%Y-%m-%d')
         jours_retard = (date_aujourd_hui - date_emprunt).days - delai_retour.days
-
         
         if jours_retard > 0:
-            frais_retard = min(jours_retard * frais_par_retard, frais_max)
-            bibliotheque[cote]['frais_retard'] = frais_retard            
-            if jours_retard > 365:
+            frais_retard =str(min(jours_retard * frais_par_retard, frais_max)) +"$"
+            bibliotheque[cote]['frais_retard'] = frais_retard   
+
+        if jours_retard > 365:
                 livres_perdus.append(cote)
-                bibliotheque[cote]['emprunts'] = 'livre est perdu'
+                bibliotheque[cote]['livres_perdus'] = "Oui"
+        elif jours_retard <= 365:
+            livres_perdus.append(cote)
+            bibliotheque[cote]['livres_perdus'] = "Non"
+    else:
+         bibliotheque[cote]['livres_perdus'] = "Non"
+         
+
 
 print(f' \n Bibliotheque avec ajout des retards et frais : {bibliotheque} \n')
-
-
-
 
 
