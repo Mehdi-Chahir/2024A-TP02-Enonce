@@ -62,9 +62,7 @@ print(f' \n Bibliotheque avec modifications de cote : {bibliotheque} \n')
 ########################################################################################################## 
 # PARTIE 4 : Emprunts et retours de livres
 ########################################################################################################## 
-
 # TODO :
-
 csvfile = open('emprunts.csv', newline='')
 x = csv.DictReader(csvfile)
 for row in x:
@@ -84,7 +82,6 @@ csvfile.close()
 ########################################################################################################## 
 # PARTIE 5 : Livres en retard 
 ########################################################################################################## 
-
 # TODO : 
 from datetime import datetime
 from datetime import timedelta
@@ -113,8 +110,6 @@ for cote, details in bibliotheque.items():
     else:
          bibliotheque[cote]['livres_perdus'] = "Non"
          
-
-
 print(f' \n Bibliotheque avec ajout des retards et frais : {bibliotheque} \n')
 
 
