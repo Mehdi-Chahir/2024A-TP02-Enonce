@@ -21,8 +21,6 @@ for row in c:
    
 
 csvfile.close()
-
-
 print(f' \n Bibliotheque initiale : {bibliotheque} \n')
 
 ########################################################################################################## 
